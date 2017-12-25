@@ -3,15 +3,12 @@
 #include <iostream>
 
 
-BallGame::BallGame(const std::string& guess, int maxTries, int currentTry) :
-	m_guess(guess),
-	m_maxTries(maxTries),
-	m_currentTry(currentTry)
+bool BallGame::isGameWon()
 {
-	reset();
+	return true;
 }
 
-bool BallGame::isGameWon()
+bool BallGame::isGameOver()
 {
 	return true;
 }
@@ -21,12 +18,22 @@ bool BallGame::checkGuessValidity(std::string)
 	return true;
 }
 
-std::string BallGame::getGuess() const
+void BallGame::reset()
 {
-	return m_guess;
 }
 
-void BallGame::setGuess(const std::string& guess)
+std::string BallGame::getGuess()
+{
+	std::cout << "enter your guess: ";
+	char guess[5];
+	std::cin >> guess;
+	std::cout << "your guess was : " << guess << std::endl;
+	setGuess(guess);
+	m_maxTries = 5;
+	return guess;
+}
+
+void BallGame::setGuess(std::string guess)
 {
 	m_guess = guess;
 }

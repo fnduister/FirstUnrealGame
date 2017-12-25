@@ -8,15 +8,23 @@ class BallGame
 	int m_currentTry;
 
 public:
-	BallGame(const std::string& guess, int maxTries, int currentTry);
-	int currentTry() const;
-	void currentTry(int currentTry);
-	std::string getGuess() const;
-	void setGuess(const std::string& guess);
+
+	BallGame(int maxTries, int currentTry = 0) :
+		m_maxTries(maxTries),
+		m_currentTry(currentTry)
+	{
+	}
+
+
 	static void reset();
+	std::string getGuess();
+	void setGuess(std::string guess);
 	int getMaxTries() const;
+	int getCurrentTry() const;
 	bool isGameWon();
-	bool checkGuessValidity(std::string);
+	bool isGameOver();
+	static bool checkGuessValidity(std::string);
+
 
 private:
 	
