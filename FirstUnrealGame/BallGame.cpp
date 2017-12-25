@@ -1,6 +1,15 @@
 ﻿#include "stdafx.h"
 #include "BallGame.h"
+#include <iostream>
 
+
+BallGame::BallGame(const std::string& guess, int maxTries, int currentTry) :
+	m_guess(guess),
+	m_maxTries(maxTries),
+	m_currentTry(currentTry)
+{
+	reset();
+}
 
 bool BallGame::isGameWon()
 {
@@ -12,18 +21,19 @@ bool BallGame::checkGuessValidity(std::string)
 	return true;
 }
 
-void BallGame::reset()
-{
-}
-
 std::string BallGame::getGuess() const
 {
 	return m_guess;
 }
 
-int BallGame::getCurrentTry() const
+void BallGame::setGuess(const std::string& guess)
 {
-	return m_currentTry;
+	m_guess = guess;
+}
+
+void BallGame::reset()
+{
+	std::cout << "alors que veux tu faire ce soir?";
 }
 
 int BallGame::getMaxTries() const
