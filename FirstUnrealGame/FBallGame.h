@@ -4,6 +4,25 @@
 using FString = std::string;
 using int32 = int;
 
+enum class EWordStatus
+{
+	Invalid_Status,
+	OK,
+	Not_Long_Enough,
+	Not_Isogram,
+	Too_Long,
+	Not_LowerCase
+};
+
+enum class EDifficulty
+{
+	EASY = 1,
+	HARD,
+	VERY_HARD,
+	IMPOSSIBLE,
+	DEFAULT
+};
+
 // All values initialised to zero;
 struct FBowCowCount
 {
@@ -14,8 +33,9 @@ struct FBowCowCount
 class FBallGame
 {
 	FString m_guess;
-	int m_maxTries;
-	int m_currentTry;
+	int32 m_maxTries;
+	int32 m_currentTry;
+	bool bGameWon;
 	FString m_hiddenWord;
 	FBowCowCount m_count;
 
@@ -23,23 +43,26 @@ public:
 	FString getHiddenWord() const;
 	void setHiddenWord(const FString& hiddenWord);
 
-	explicit FBallGame(int maxTries,FString hiddenWord);
-	void showResult() const;
+	explicit FBallGame(int maxTries);
+	static void showResult(FBowCowCount);
 	
+	int32 getHiddenWordLenght() const;
 	static void reset();
 	void getGuess();
-	void setGuess(FString guess);
+	void setGuess(FString);
 	int getMaxTries() const;
-
+	void getIntro() const;
 	int getCurrentTry() const;
 	void setCurrentTry();
-
-	bool isGameWon();
+	void ShowErrorStatus(EWordStatus) const;
 	bool isGameOver() const;
-	bool checkGuessValidity() const;
-	FBowCowCount submitGuess(FString);
+	EWordStatus checkGuessValidity() const;
+	FBowCowCount submitGuess();
+	static EDifficulty ChooseDifficulty();
+	void setDifficulty(EDifficulty);
 
 private:
-	
+	bool isIsogram(FString) const;
+	bool isLowerCase(FString) const;
 
 };
