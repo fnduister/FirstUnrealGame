@@ -150,16 +150,16 @@ void FBallGame::setDifficulty(EDifficulty difficulty)
 	{
 	case EDifficulty::EASY:
 		m_hiddenWord = "you";
-		m_maxTries = 3;
+		m_maxTries = 5;
 		break;
 	case EDifficulty::HARD:
 	case EDifficulty::DEFAULT:
 		m_hiddenWord = "multi";
-		m_maxTries = 7;
+		m_maxTries = 10;
 		break;
 	case EDifficulty::VERY_HARD:
 		m_hiddenWord = "portable";
-		m_maxTries = 10;
+		m_maxTries = 13;
 		break;
 	case EDifficulty::IMPOSSIBLE:
 		m_hiddenWord = "compatible";
